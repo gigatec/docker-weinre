@@ -9,6 +9,6 @@ RUN pacman -Syu --noconfirm
 RUN pacman -S nodejs --noconfirm
 RUN npm install weinre -g
 
-EXPOSE 8080
+EXPOSE 80
 
-ENTRYPOINT ["/usr/bin/weinre", "--httpPort 8080", "--verbose", "--debug"]
+ENTRYPOINT ["/usr/bin/weinre", "--httpPort 80", "--verbose", "--debug"]
