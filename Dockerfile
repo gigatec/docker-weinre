@@ -1,14 +1,9 @@
-# weinre
-#
-# VERSION 0.1.0
+FROM node:7.8.0-alpine
 
-FROM base/arch
-MAINTAINER Logan Koester <logan@logankoester.com>
+RUN npm config set production true && \
+  npm install pgb-weinre@0.9.1 -g --production && \
+  adduser -DS weinre
 
-RUN pacman -Syu --noconfirm
-RUN pacman -S nodejs --noconfirm
-RUN npm install weinre -g
+USER weinre
 
-EXPOSE 80
-
-ENTRYPOINT ["/usr/bin/weinre", "--httpPort 80", "--verbose", "--debug"]
+CMD ["weinre", "--boundHost 0.0.0.0", "--httpPort 80", "--verbose", "--debug"]
